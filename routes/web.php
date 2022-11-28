@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\form;
+use App\Http\Controllers\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,4 @@ Route::get('/q5', function () {
 Route::get('/q6', function () {
     return view('question6');
 });
-Route::get('/q7', function () {
-    return view('question7');
-});
+Route::get('/q7', [ApiController::class, 'fetch'])->name('question7');

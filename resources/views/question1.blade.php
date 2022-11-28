@@ -63,8 +63,6 @@
         </form>
     
         @php
-        $test = 1;
-        echo $test;
         @endphp
     </body>
 </html>

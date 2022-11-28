@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class person extends Model
 {
     use HasFactory;
-    public $fillFoorm = ['first_name', 'sur_name', 'id_number'];
+    public $fillForm = ['first_name', 'sur_name', 'id_number'];
 }

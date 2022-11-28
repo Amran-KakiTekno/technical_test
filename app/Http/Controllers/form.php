@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\person;
 use Illuminate\Http\Request;
 
 class form extends Controller
@@ -16,6 +16,7 @@ class form extends Controller
             'sur_name' => 'required',
             'id_number' => 'required',
         ]);
+
         person::create($request->all());
         return back()->with('success', 'Record saved!');
     }
