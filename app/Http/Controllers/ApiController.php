@@ -11,10 +11,8 @@ class ApiController extends Controller
 {
     public function fetch()
     {
-        $test = [];
         $comments = Http::get('https://jsonplaceholder.typicode.com/comments');
         $posts = Http::get('https://jsonplaceholder.typicode.com/posts');
-        // $test = Http::get('https://jsonplaceholder.typicode.com/comments/' . strval($post->id)); 
         $all_comments = json_decode($comments->body());
         $all_post = json_decode($posts->body());
         $number_of_comments = [];
@@ -145,12 +143,46 @@ class ApiController extends Controller
             ]);
         }
         
-        return view('question7', compact('results'));;
+        return view('question7', compact('results'));
     }
 
     public function search(Request $request)
     {
-        $post = new Posts;
-        
+        $comments = Http::get('https://jsonplaceholder.typicode.com/comments');
+        $posts = Http::get('https://jsonplaceholder.typicode.com/posts');
+        $all_comments = json_decode($comments->body());
+        $all_post = json_decode($posts->body());
+
+        if (isset($request->post_id)) {
+            foreach ($all_comments as $ind=>$comment) {
+                if ($comment->postId != $request->post_id) {
+                    unset($all_comments[$ind]);
+                }
+            }
+        } else if (isset($request->post_title)) {
+            foreach ($all_post as $ind=>$post) {
+                if (str_contains($post->title, $request->post_title)) {
+                    $id = $post->id;
+                }
+            }
+            foreach ($all_comments as $ind=>$comment) {
+                if ($comment->postId != $id) {
+                    unset($all_comments[$ind]);
+                }
+            }
+        } else if (isset($request->post_body)) {
+            foreach ($all_post as $post) {
+                if (str_contains($post->body, $request->post_body)) {
+                    $id = $post->id;
+                }
+            }
+            foreach ($all_comments as $ind=>$comment) {
+                if ($comment->postId != $id) {
+                    unset($all_comments[$ind]);
+                }
+            }
+        }
+
+        return view('question7', compact('all_comments'));
     }
 }

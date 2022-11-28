@@ -38,3 +38,4 @@ Route::get('/q6', function () {
     return view('question6');
 });
 Route::get('/q7', [ApiController::class, 'fetch'])->name('question7');
+Route::post('/q7', [ApiController::class, 'search'])->name('q7.search');

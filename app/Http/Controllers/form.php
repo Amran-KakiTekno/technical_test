@@ -18,6 +18,5 @@ class form extends Controller
         ]);
 
         person::create($request->all());
-        return back()->with('success', 'Record saved!');
     }
 }

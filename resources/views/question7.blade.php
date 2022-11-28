@@ -32,23 +32,23 @@
         </div>
       </nav>
     <body class="antialiased">
-      <form action="/" method="post" action="{{ route('q1.form') }}">
+      <form action="/q7" method="post" action="{{ route('q7.search') }}">
           @csrf
           <table class="table">
               <thead>
                   <tr>
-                      <th scope="col">First Name: </th>
-                      <td><input type="text" name="first_name" id="first_name"></td>
+                      <th scope="col">Post Id :</th>
+                      <td><input type="text" name="post_id" id="post_id"></td>
                   </tr>
               </thead>
               <tbody>
                   <tr>
-                      <th scope="row">SurName: </th>
-                      <td><input type="text" name="c" id="first_name"></td>
+                      <th scope="row">Post Title: </th>
+                      <td><input type="text" name="post_title" id="post_title"></td>
                   </tr>
                   <tr>
-                      <th scope="row">ID Number: </th>
-                      <td><input type="text" name="id_number" id="id_number"></td>
+                      <th scope="row">Post Body: </th>
+                      <td><input type="text" name="post_body" id="post_body"></td>
                   </tr>
                   <tr>
                       <td><input type="submit" name="send" value="Submit"></td>
@@ -57,15 +57,26 @@
           </table>
       </form>
         @php
-        $test = $results->sortBy('total_number_of_comments');
-        $test = $test->toArray();
-        foreach ($test as $test2) {
-          foreach ($test2 as $key => $value) {
-            print_r($key . " : " . $value);
-            print_r("<br>");
+        // if (isset($test)) {
+        //   print_r($test);
+        // }
+        if (isset($all_comments)) {
+          foreach ($all_comments as $comments) {
+            foreach ($comments as $key => $value) {
+              print_r($key . " : " . $value);
+              print_r("<br>");
+            }
+          }
+        } else {
+          $sortedResults = $results->sortBy('total_number_of_comments');
+          $sortedResults = $sortedResults->toArray();
+          foreach ($sortedResults as $sortedResult) {
+            foreach ($sortedResult as $key => $value) {
+              print_r($key . " : " . $value);
+              print_r("<br>");
+            }
           }
         }
-        // print_r ($test);
         @endphp
     </body>
 </html>
