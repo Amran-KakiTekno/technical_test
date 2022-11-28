@@ -32,31 +32,40 @@
         </div>
       </nav>
     <body class="antialiased">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">First Name: </th>
-                <td><input type="text" id="fname"></td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">Last Name: </th>
-                <td><input type="text" id="lname"></td>
-            </tr>
-            <tr>
-                <th scope="row">ID Number: </th>
-                <td><input type="text" id="id"></td>
-            </tr>
-            <tr>
-                <td><button type="submit" class="btn btn-primary">Submit</button></td>
-            </tr>
-        </tbody>
-    </table>
-    <button onclick="window.location='{{ url("/q2") }}'">Q2</button>
+      <form action="/" method="post" action="{{ route('q1.form') }}">
+          @csrf
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th scope="col">First Name: </th>
+                      <td><input type="text" name="first_name" id="first_name"></td>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <th scope="row">SurName: </th>
+                      <td><input type="text" name="c" id="first_name"></td>
+                  </tr>
+                  <tr>
+                      <th scope="row">ID Number: </th>
+                      <td><input type="text" name="id_number" id="id_number"></td>
+                  </tr>
+                  <tr>
+                      <td><input type="submit" name="send" value="Submit"></td>
+                  </tr>
+              </tbody>
+          </table>
+      </form>
         @php
-        $test = 1;
-        echo $test;
+        $test = $results->sortBy('total_number_of_comments');
+        $test = $test->toArray();
+        foreach ($test as $test2) {
+          foreach ($test2 as $key => $value) {
+            print_r($key . " : " . $value);
+            print_r("<br>");
+          }
+        }
+        // print_r ($test);
         @endphp
     </body>
 </html>
