@@ -32,31 +32,21 @@
         </div>
       </nav>
     <body class="antialiased">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">First Name: </th>
-                <td><input type="text" id="fname"></td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">Last Name: </th>
-                <td><input type="text" id="lname"></td>
-            </tr>
-            <tr>
-                <th scope="row">ID Number: </th>
-                <td><input type="text" id="id"></td>
-            </tr>
-            <tr>
-                <td><button type="submit" class="btn btn-primary">Submit</button></td>
-            </tr>
-        </tbody>
-    </table>
-    <button onclick="window.location='{{ url("/q2") }}'">Q2</button>
         @php
-        $test = 1;
-        echo $test;
+          $person_array = array('Leanna', 'derek', 'Lisa', 'John', 'Lancelot', 'Michael', 'Norman', 'Lawrance of Arabia');
+          $output = [];
+          $letters =[];
+          $i = 0;
+          foreach ($person_array as $person) {
+            $letter = str_split($person, 1);
+            for ($i=0; $i < count($letter); $i++) { 
+              array_push($letters, $letter[$i]);
+            }
+          }
+          $output = array_unique($letters);
+          $output = implode('', $output);
+          $output = str_replace(' ', '', $output);
+          print_r($output);
         @endphp
     </body>
 </html>

@@ -32,31 +32,18 @@
         </div>
       </nav>
     <body class="antialiased">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">First Name: </th>
-                <td><input type="text" id="fname"></td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">Last Name: </th>
-                <td><input type="text" id="lname"></td>
-            </tr>
-            <tr>
-                <th scope="row">ID Number: </th>
-                <td><input type="text" id="id"></td>
-            </tr>
-            <tr>
-                <td><button type="submit" class="btn btn-primary">Submit</button></td>
-            </tr>
-        </tbody>
-    </table>
-    <button onclick="window.location='{{ url("/q2") }}'">Q2</button>
         @php
-        $test = 1;
-        echo $test;
+          $indexed_array = array('fruit'=>'apple', 'select_name'=>'john', 'select_animal'=>'cat', 'number'=>'23', 'select_car'=>'toyota', 'plant'=>'rose', 'color'=>'blue', 'select_other'=>': this is awesome');
+          foreach ($indexed_array as $key => $value) {
+            if (str_contains($key, 'select_')) {
+              unset($indexed_array[$key]);
+            }
+          }
+          print_r($indexed_array);
+          echo "<br><br>";
+          foreach ($indexed_array as $key => $value) {
+            echo $key . " = " . $value . " " . date("Y-m-d h:i:s") . "<br>";
+          }
         @endphp
     </body>
 </html>
