@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('people', function (Blueprint $table) {
+        Schema::create('tbl_Person', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('sur_name');
-            $table->string('id_number');
+            $table->string('col_firstname');
+            $table->string('col_surname');
+            $table->string('col_idnumber');
             $table->timestamps();
         });
     }

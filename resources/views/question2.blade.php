@@ -17,7 +17,7 @@
               <a class="nav-link" onclick="window.location='{{ url("/") }}'">Question 1</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" onclick="window.location='{{ url("/q2") }}'">Question 2 <span class="sr-only">(current)</a>
+              <a class="nav-link" onclick="window.location='{{ url("/q2") }}'"><strong>Question 2</strong></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" onclick="window.location='{{ url("/q3") }}'">Question 3</a>
@@ -38,9 +38,13 @@
         </div>
       </nav>
     <body class="antialiased">
+      <br><br>
         @php
-        $sum = 0;
         $this_array = array(14,23,264,654,4,34,34);
+        print_r($this_array);
+        echo "<br>";
+        echo "Sum of the numbers in the array is: ";
+        $sum = 0;
         foreach ($this_array as $num) {
             $sum += $num;
         }
